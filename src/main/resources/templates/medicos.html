@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Administrar medicos</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div class="container-fluid text-center">
+    <div><h2>Administrar Medicos</h2></div>
+    <div class="m-2">
+        <a class="h3" th:href="@{/medicos/new}">Añadir medico</a>
+    </div>
+
+    <div th:if="${message}" class="alert alert-success text-center">
+        [[${message}]]
+    </div>
+    <div>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th>Especialidad</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="medico : ${listMedicos}">
+                <tr>
+                    <td>[[${medico.id}]]</td>
+                    <td>[[${medico.nombre}]]</td>
+                    <td>[[${medico.apellidoPaterno}]]</td>
+                    <td>[[${medico.apellidoMaterno}]]</td>
+                    <td>[[${medico.especialidad}]]</td>
+                    <td>
+                        <a class="h4 mr-3" th:href="@{'/medicos/edit/' + ${medico.id}}">Edit</a>
+                        <a class="h4" th:href="@{'/medicos/delete/' + ${medico.id}}">Delete</a>
+                    </td>
+                </tr>
+            </th:block>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
